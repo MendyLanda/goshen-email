@@ -35,7 +35,7 @@ Shows the API base URL, a link to the OpenAPI document, and a link to manage key
 
 ## Domains
 
-Add a domain, see the DNS records to publish, verify them, and remove the domain. See [Custom domains](/docs/custom-domains).
+Add a domain, see the DNS records to publish, verify them, and remove the domain. The page appears for administrators on deployments that run the SMTP gateway; hosted customer accounts don't have it yet. See [Custom domains](/docs/custom-domains).
 
 ## Quarantine
 

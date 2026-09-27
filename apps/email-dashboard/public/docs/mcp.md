@@ -9,7 +9,7 @@ Give Claude Code, Cursor, Codex, or any MCP client an inbox as a set of tools. H
 | Endpoint | `https://api.goshenemail.com/mcp` | `node packages/email-mcp/dist/main.js` from a checkout |
 | Transport | Streamable HTTP | Standard input and output |
 | Key | Account key (`bze_`) in the `Authorization` header | Account or mailbox key in `GOSHENEMAIL_API_KEY` |
-| Tools listed | Only those the key's scopes allow | All 16; the API rejects out-of-scope calls |
+| Tools listed | Only those the key's scopes allow | All 17; the API rejects out-of-scope calls |
 
 The hosted server rechecks the key, its expiration, and the account's status on every request. This release authenticates with keys, not OAuth.
 

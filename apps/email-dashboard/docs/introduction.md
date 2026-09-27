@@ -9,11 +9,11 @@ Email is the channel the rest of the world already uses. An agent with an inbox 
 
 ## What an agent gets
 
-- **Its own inbox.** One API call creates an inbox with its own address on `{{DEFAULT_DOMAIN}}` or on a domain you own. Each inbox keeps its own messages, threads, and labels.
+- **Its own inbox.** One API call creates an inbox with its own address on `{{DEFAULT_DOMAIN}}`, or on a domain you own where the deployment supports custom domains. Each inbox keeps its own messages, threads, and labels.
 - **Two-way mail.** The agent sends, receives, and replies. Replies to mail it sent land in the same inbox, threaded to the original conversation.
 - **Files.** Attachments go out with a message and come back with a download URL.
 - **A key scoped to the job.** A mailbox key reaches one inbox. An account key reaches every inbox in the account, limited to the scopes you choose. Neither can release quarantine or create other keys.
-- **Screening before it reads.** Incoming mail is scanned. Messages that fail authentication, score as spam, or carry malware wait in quarantine instead of reaching the agent.
+- **Screening before it reads.** When the deployment scans incoming mail, messages that fail authentication, score as spam, or carry malware wait in quarantine instead of reaching the agent.
 - **Tools, not just endpoints.** The [MCP server](/docs/mcp) exposes the inbox to Claude Code, Cursor, Codex, or any MCP client as 17 tools. The REST API and CLI expose the same 17 operations.
 
 ## Oversight when you want it

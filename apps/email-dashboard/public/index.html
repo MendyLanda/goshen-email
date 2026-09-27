@@ -6,6 +6,16 @@
   <meta name="theme-color" content="#F8F8F8">
   <meta name="description" content="Email inboxes for AI agents. Give each agent a real address with threads, attachments, and a key that reaches only its own mail. Drive it from the REST API, CLI, or MCP, and read along from the dashboard.">
   <title>Goshen Email | Email inboxes for AI agents</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Goshen Email">
+  <meta property="og:url" content="https://goshenemail.com/">
+  <meta property="og:title" content="Goshen Email | Email inboxes for AI agents">
+  <meta property="og:description" content="Give each agent a real address with threads, attachments, and a key that reaches only its own mail. Drive it from the REST API, CLI, or MCP.">
+  <meta property="og:image" content="https://goshenemail.com/images/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Goshen Email: email inboxes for AI agents.">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/images/solenne.svg" type="image/svg+xml">
   <link rel="preload" href="/fonts/GeistVariable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
@@ -158,7 +168,7 @@
           </li>
           <li class="tile">
             <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M20 5l12 4.5v9c0 7.5-5.2 13.4-12 16.5-6.8-3.1-12-9-12-16.5v-9z" fill="none" stroke="#19191966" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 20l3.5 3.5L25.5 16" fill="none" stroke="#19191966" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p>Quarantine for spam, spoofing, and malware</p>
+            <p>Retried sends that never go out twice</p>
           </li>
           <li class="tile">
             <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M10 35V6" fill="none" stroke="#19191966" stroke-width="1.6" stroke-linecap="round"/><path d="M10 8h19l-4 6.5 4 6.5H10" fill="none" stroke="#19191966" stroke-width="1.6" stroke-linejoin="round"/></svg>
@@ -244,7 +254,7 @@
             <div class="step-copy">
               <p class="step-number" aria-hidden="true">03</p>
               <h3 class="step-title">Step in when it matters</h3>
-              <p class="step-text">Mail that fails sender checks, or scans as spam or malware, waits in quarantine. Only a person can release it, from the dashboard.</p>
+              <p class="step-text">When the SMTP gateway scans incoming mail, anything that fails sender checks or scans as spam or malware waits in quarantine. Only a person can release it, from the dashboard. Hosted inboxes don't scan incoming mail yet.</p>
               <a href="/docs/quarantine" class="step-link">How quarantine works<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M6.5 4.5 10 8l-3.5 3.5" fill="none" stroke="#317CFF" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div role="img" aria-label="A message in the travel inbox held in quarantine after failing SPF and DMARC and scoring as spam, waiting for a person to release it." class="step-media">
@@ -371,7 +381,7 @@ $ goshenemail messages reply --json - &lt; reply.json
       <div class="band-inner section pricing">
         <div class="section-head">
           <h2 id="pricing-title" class="title"><span class="subtle">Start free. Pay as agents grow.</span> <span>Or run it yourself.</span></h2>
-          <p class="section-lede">Every plan includes the dashboard, quarantine review, and the full API. Developer and Team add $2 top-ups when you need more room.</p>
+          <p class="section-lede">Every plan includes the dashboard, triage, and the full API. Developer and Team add $2 top-ups when you need more room.</p>
         </div>
         <div class="plans">
           <article class="plan">
@@ -395,9 +405,9 @@ $ goshenemail messages reply --json - &lt; reply.json
               <li>10 inboxes</li>
               <li>10,000 sends a month</li>
               <li>10,000 triage analyses a month</li>
-              <li>5 custom domains</li>
-              <li>10 GB of storage · 2 seats</li>
+              <li>10 GB of storage</li>
               <li>Email support · $2 top-ups</li>
+              <li>Coming soon: 5 custom domains, 2 seats</li>
             </ul>
           </article>
           <article class="plan">
@@ -408,9 +418,9 @@ $ goshenemail messages reply --json - &lt; reply.json
               <li>100 inboxes</li>
               <li>100,000 sends a month</li>
               <li>100,000 triage analyses a month</li>
-              <li>50 custom domains</li>
-              <li>100 GB of storage · 10 seats</li>
+              <li>100 GB of storage</li>
               <li>Priority email · $2 top-ups</li>
+              <li>Coming soon: 50 custom domains, 10 seats</li>
             </ul>
           </article>
           <article class="plan">
@@ -422,7 +432,7 @@ $ goshenemail messages reply --json - &lt; reply.json
               <li>No plan limits, no billing account</li>
               <li>Cloudflare Workers, R2, PostgreSQL</li>
               <li>Rspamd and ClamAV scanning</li>
-              <li>Runs locally with no accounts</li>
+              <li>Try it locally with no accounts</li>
               <li>Support contracts available</li>
             </ul>
           </article>
@@ -440,7 +450,7 @@ $ goshenemail messages reply --json - &lt; reply.json
               <span class="pill pill-neutral"><span class="dot"></span>FSL-1.1</span>
             </div>
             <div class="detail-row"><span class="detail-label">Includes</span><span class="tags"><span class="tag">API Worker</span><span class="tag">Dashboard</span><span class="tag">SMTP gateway</span></span></div>
-            <div class="detail-row"><span class="detail-label">Run it</span><code>pnpm install &amp;&amp; pnpm build</code></div>
+            <div class="detail-row"><span class="detail-label">Build it</span><code>pnpm install &amp;&amp; pnpm build</code></div>
             <div class="detail-foot"><a href="https://github.com/boringcomputers/goshen-email" class="app-button app-button-dark">View on GitHub</a></div>
           </div>
         </div>

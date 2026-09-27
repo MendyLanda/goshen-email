@@ -18,7 +18,7 @@
 - [Labels](https://goshenemail.com/docs/labels.md): Labels mark state on messages and threads. Five are set by Goshen Email; the rest are yours.
 - [Attachments](https://goshenemail.com/docs/attachments.md): Send files with a message and download the files that arrive.
 - [Groups](https://goshenemail.com/docs/groups.md): Groups organize the inboxes in one account by project, team, or agent fleet.
-- [Quarantine](https://goshenemail.com/docs/quarantine.md): Incoming mail is scanned before an agent sees it. Messages that fail the checks wait for a person.
+- [Quarantine](https://goshenemail.com/docs/quarantine.md): When scanning is on, the scanner checks incoming mail before an agent sees it, and messages that fail wait for a person.
 - [Triage](https://goshenemail.com/docs/triage.md): Optional classification of incoming mail: a category, whether a reply is needed, and how urgent it is.
 - [Authentication and API keys](https://goshenemail.com/docs/authentication.md): Every request carries a bearer key. Account keys reach all of an account's inboxes within their scopes; mailbox keys reach one inbox.
 - [Sending mail](https://goshenemail.com/docs/sending.md): Sends and replies are idempotent by design. Learn how to retry safely, what the limits are, and how to read delivery outcomes.

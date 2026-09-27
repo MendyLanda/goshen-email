@@ -60,4 +60,4 @@ Threads report `attachmentCount`, and `getThread` includes each message's attach
 
 ## Scanning
 
-Incoming attachments are scanned for malware along with the rest of the message. A message with a flagged attachment goes to [quarantine](/docs/quarantine), and it cannot be released while the antivirus result is anything other than clean. Attachment content is untrusted data even when it passes the scan: a PDF or spreadsheet can carry text that reads like instructions. See [Building agents on email](/docs/agents).
+When the deployment scans incoming mail, the scanner checks attachments for malware along with the rest of the message. The hosted service doesn't scan incoming mail yet. A message with a flagged attachment goes to [quarantine](/docs/quarantine), and it cannot be released while the antivirus result is anything other than clean. Attachment content is untrusted data even when it passes the scan: a PDF or spreadsheet can carry text that reads like instructions. See [Building agents on email](/docs/agents).

@@ -76,7 +76,7 @@ EOF</code></pre>
 <p>The URL is signed and valid for five minutes. Fetch it without an <code>Authorization</code> header. Request a new URL if it expires; the attachment stays with the message.</p>
 <p>Threads report <code>attachmentCount</code>, and <code>getThread</code> includes each message&#39;s attachment list, so an agent can find files across a conversation without reading every message.</p>
 <h2 id="scanning">Scanning</h2>
-<p>Incoming attachments are scanned for malware along with the rest of the message. A message with a flagged attachment goes to <a href="/docs/quarantine">quarantine</a>, and it cannot be released while the antivirus result is anything other than clean. Attachment content is untrusted data even when it passes the scan: a PDF or spreadsheet can carry text that reads like instructions. See <a href="/docs/agents">Building agents on email</a>.</p>
+<p>When the deployment scans incoming mail, the scanner checks attachments for malware along with the rest of the message. The hosted service doesn&#39;t scan incoming mail yet. A message with a flagged attachment goes to <a href="/docs/quarantine">quarantine</a>, and it cannot be released while the antivirus result is anything other than clean. Attachment content is untrusted data even when it passes the scan: a PDF or spreadsheet can carry text that reads like instructions. See <a href="/docs/agents">Building agents on email</a>.</p>
 
       <nav class="docs-pager" aria-label="Previous and next">
         <a href="/docs/labels" rel="prev"><span>Previous</span>Labels</a>

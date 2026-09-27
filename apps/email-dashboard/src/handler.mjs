@@ -43,6 +43,7 @@ export const assets = new Map([
   ['/images/landing/sea.webp', ['images/landing/sea.webp', 'image/webp']],
   ['/images/landing/dunes.webp', ['images/landing/dunes.webp', 'image/webp']],
   ['/images/landing/road.webp', ['images/landing/road.webp', 'image/webp']],
+  ['/images/og.png', ['images/og.png', 'image/png']],
 ])
 const equal = (a, b) => {
   const left = Buffer.from(a), right = Buffer.from(b)

@@ -10,7 +10,7 @@ Every account can create inboxes on `{{DEFAULT_DOMAIN}}` with no setup. Use it t
 ## What you need
 
 - A domain you control, with access to its DNS.
-- The deployment's SMTP gateway. Custom-domain mail flows through a gateway that runs Postfix with Rspamd and ClamAV scanning, operated by whoever runs the deployment. On the hosted service that is Goshen Email; on a self-hosted deployment, follow the gateway runbook in the repository.
+- The deployment's SMTP gateway. Custom-domain mail flows through a gateway that runs Postfix with Rspamd and ClamAV scanning, operated by whoever runs the deployment. On a self-hosted deployment, follow the gateway runbook in the repository. The hosted service doesn't offer custom domains to customer accounts yet.
 
 ## Connect a domain
 

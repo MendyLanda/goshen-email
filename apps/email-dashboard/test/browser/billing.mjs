@@ -57,6 +57,11 @@ test('the plan page shows usage, blocks past the allowance, upgrades through che
   assert.equal(await cards.nth(1).locator('.billing-price strong').textContent(), '$20')
   assert.equal(await cards.nth(2).locator('.billing-price strong').textContent(), '$99')
   assert.ok((await cards.nth(2).textContent()).includes('100,000 sends a month'))
+  // Seats beyond one and custom domains aren't available to hosted accounts yet, so the cards say so.
+  assert.ok((await cards.nth(0).textContent()).includes('1 seat') && !(await cards.nth(0).textContent()).includes('coming soon'))
+  assert.ok((await cards.nth(1).textContent()).includes('5 custom domains, coming soon'))
+  assert.ok((await cards.nth(2).textContent()).includes('10 seats, coming soon'))
+  assert.ok(!(await page.locator('#billing-plans').textContent()).includes('one domain'))
   if (evidence) await page.screenshot({ path: evidence + '/billing-desktop.png', fullPage: true })
 
   // Spending the send allowance shows on the page and the API says why the next send failed.
