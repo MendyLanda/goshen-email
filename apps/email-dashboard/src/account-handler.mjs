@@ -1,4 +1,4 @@
-import { assetResponse, assets, dashboardOrigin, readBody, responseHeaders, workspaceCookie } from './handler.mjs'
+import { assetResponse, assets, dashboardOrigin, readBody, renderAsset, responseHeaders, workspaceCookie } from './handler.mjs'
 import { renderAccountPage } from './account-page.mjs'
 import { customerOperations, nativeReadOperations, DashboardError } from './service.mjs'
 
@@ -22,7 +22,7 @@ export function accountDashboardHandler({ publicUrl, workerUrl, proxySecret, req
         const entry = pages.has(path) ? ['auth.html', 'text/html; charset=utf-8'] : accountAssets.get(path) ?? assets.get(path)
         if (entry) {
           const body = await asset(entry[0], request)
-          return assetResponse(pages.has(path) ? await renderAccountPage(body, url) : body, entry)
+          return assetResponse(pages.has(path) ? await renderAccountPage(body, url) : await renderAsset(path, body, origin), entry)
         }
         if (path === '/healthz') return json({ status: 'ok', service: 'bezalel-email-dashboard' })
       }

@@ -41,11 +41,15 @@ test('self-hosted and administrator accounts are not billed', () => {
 
 test('plan cards describe allowances and the direction of a change', () => {
 	assert.deepEqual(includedLines(plans[0]), ['1 inbox', '100 sends a month', '50 triage analyses a month']);
-	assert.deepEqual(includedLines(plans[1]).slice(-2), ['2 GB storage', '$2 top-ups: one inbox, one domain, 1,000 sends, or 1,000 analyses']);
+	assert.deepEqual(includedLines(plans[1]).slice(-2), ['2 GB storage', '$2 top-ups: one inbox, 1,000 sends, or 1,000 analyses']);
 	assert.deepEqual(planAction(plans, plans[1], 'free'), { current: false, upgrade: true, label: 'Upgrade to Pro' });
 	assert.deepEqual(planAction(plans, plans[0], 'pro'), { current: false, upgrade: false, label: 'Switch to Free' });
 	assert.equal(planAction(plans, plans[0], 'free').label, 'Current plan');
 	assert.equal(formatAmount('storage_mb', 512), '512 MB');
+	// Hosted accounts can't add domains or members yet, so amounts beyond what exists today say so.
+	const team: Plan = { planId: 'team', name: 'Team', price: 99, description: 'Fleet.', included: { inboxes: 100, customDomains: 50, seats: 10 } };
+	assert.deepEqual(includedLines(team), ['100 inboxes', '50 custom domains, coming soon', '10 seats, coming soon']);
+	assert.deepEqual(includedLines({ ...team, included: { seats: 1 } }), ['1 seat']);
 });
 
 test('an older API Worker gets an explanation instead of its 404', () => {

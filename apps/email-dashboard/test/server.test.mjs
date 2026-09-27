@@ -117,6 +117,11 @@ test('serves only fixed assets with an inert HTML policy and no configuration se
   assert.match(page.headers.get('content-security-policy'), /frame-ancestors 'none'/)
   const body = await page.text()
   assert.match(body, /<title>Goshen Email \| Email inboxes for AI agents<\/title>/)
+  // A deployment on another origin names itself in the social tags, not the hosted site.
+  assert.match(body, /<meta property="og:url" content="http:\/\/127\.0\.0\.1:3031\/">/)
+  assert.match(body, /<meta property="og:image" content="http:\/\/127\.0\.0\.1:3031\/images\/og\.png">/)
+  assert.equal(body.includes('content="https://goshenemail.com/'), false)
+  assert.equal((await f.request('/images/og.png')).headers.get('content-type'), 'image/png')
   for (const path of ['/app', '/app/']) {
     const app = await f.request(path)
     assert.equal(app.status, 200)

@@ -9,6 +9,9 @@ const featureLabels: Record<string, [string, 'standing' | 'monthly']> = {
 	storage_mb: ['Storage', 'standing'],
 	seats: ['Seats', 'standing']
 };
+// Plans declare these, but the hosted service can't provide more than this yet: accounts have one member,
+// and only administrators can add domains. Amounts above them show as coming soon.
+const availableNow: Record<string, number> = { custom_domains: 0, seats: 1 };
 const number = new Intl.NumberFormat('en-US');
 const date = (value: string) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
@@ -89,9 +92,10 @@ export function includedLines(plan: Plan) {
 		.map(([feature, value]) => {
 			const [label, cadence] = featureLabels[feature];
 			const noun = value === 1 ? label.toLowerCase().replace(/es$/, '').replace(/s$/, '') : label.toLowerCase();
-			return `${formatAmount(feature, value)} ${noun}${cadence === 'monthly' ? ' a month' : ''}`;
+			const soon = feature in availableNow && value > availableNow[feature];
+			return `${formatAmount(feature, value)} ${noun}${cadence === 'monthly' ? ' a month' : ''}${soon ? ', coming soon' : ''}`;
 		});
-	if (plan.topUps) lines.push('$2 top-ups: one inbox, one domain, 1,000 sends, or 1,000 analyses');
+	if (plan.topUps) lines.push('$2 top-ups: one inbox, 1,000 sends, or 1,000 analyses');
 	return lines;
 }
 
