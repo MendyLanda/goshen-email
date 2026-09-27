@@ -7,6 +7,14 @@ dist/
 .dev.vars
 .dev.vars.*
 !.dev.vars.example
+secrets.json
+secrets.env
+*.secrets.json
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
 .worktrees/
 .artifacts/
 *.log
