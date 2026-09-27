@@ -2,6 +2,9 @@ const featureLabels = {
   inboxes: ['Inboxes', 'standing'], sends: ['Sends', 'monthly'], triage: ['Triage analyses', 'monthly'],
   custom_domains: ['Custom domains', 'standing'], storage_mb: ['Storage', 'standing'], seats: ['Seats', 'standing'],
 }
+// Plans declare these, but the hosted service can't provide more than this yet: accounts have one member,
+// and only administrators can add domains. Amounts above them show as coming soon.
+const availableNow = { custom_domains: 0, seats: 1 }
 const number = new Intl.NumberFormat('en-US')
 const date = value => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 export const formatAmount = (feature, value) => feature === 'storage_mb' ? (value >= 1024 ? `${number.format(value / 1024)} GB` : `${number.format(value)} MB`) : number.format(value)
@@ -64,9 +67,10 @@ export function createBillingPanel({ rpc, notify, getCustomer, onUsage }) {
     for (const [feature, value] of includedRows(plan)) {
       if (!value) continue
       const [label, cadence] = featureLabels[feature]
-      list.append(node('li', {}, `${formatAmount(feature, value)} ${value === 1 ? label.toLowerCase().replace(/es$/, '').replace(/s$/, '') : label.toLowerCase()}${cadence === 'monthly' ? ' a month' : ''}`))
+      const soon = feature in availableNow && value > availableNow[feature]
+      list.append(node('li', {}, `${formatAmount(feature, value)} ${value === 1 ? label.toLowerCase().replace(/es$/, '').replace(/s$/, '') : label.toLowerCase()}${cadence === 'monthly' ? ' a month' : ''}${soon ? ', coming soon' : ''}`))
     }
-    if (plan.topUps) list.append(node('li', {}, '$2 top-ups: one inbox, one domain, 1,000 sends, or 1,000 analyses'))
+    if (plan.topUps) list.append(node('li', {}, '$2 top-ups: one inbox, 1,000 sends, or 1,000 analyses'))
     card.append(list)
     const order = usage.plans.map(p => p.planId)
     const upgrade = order.indexOf(plan.planId) > order.indexOf(current)

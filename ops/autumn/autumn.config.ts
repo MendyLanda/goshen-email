@@ -11,7 +11,8 @@ export const storage = feature({ internalId: "fe_3Jk5wF1kB0hMAZj739DsdJgFNxm", f
 export const seats = feature({ internalId: "fe_3Jk5wDX5Dxgl54JQAOXP8pcnqT8", featureId: "seats", name: "Seats", type: "metered", consumable: false })
 
 const monthly = { interval: "month" } as const
-// Every top-up is $2 per unit per month: one inbox, one domain, 1,000 sends, or 1,000 triage analyses.
+// Every top-up is $2 per unit per month: one inbox, 1,000 sends, or 1,000 triage analyses. Custom domains
+// have no top-up while hosted accounts cannot add domains.
 const topUp = (billingUnits: number) => ({ amount: 2, billingUnits, interval: "month", billingMethod: "prepaid" } as const)
 
 export const free = plan({
@@ -46,7 +47,7 @@ export const developer = plan({
     { featureId: inboxes.featureId, included: 10, price: topUp(1) },
     { featureId: sends.featureId, included: 10_000, reset: monthly, price: topUp(1_000) },
     { featureId: triage.featureId, included: 10_000, reset: monthly, price: topUp(1_000) },
-    { featureId: customDomains.featureId, included: 5, price: topUp(1) },
+    { featureId: customDomains.featureId, included: 5 },
     { featureId: storage.featureId, included: 10_240 },
     { featureId: seats.featureId, included: 2 },
   ],
@@ -65,7 +66,7 @@ export const team = plan({
     { featureId: inboxes.featureId, included: 100, price: topUp(1) },
     { featureId: sends.featureId, included: 100_000, reset: monthly, price: topUp(1_000) },
     { featureId: triage.featureId, included: 100_000, reset: monthly, price: topUp(1_000) },
-    { featureId: customDomains.featureId, included: 50, price: topUp(1) },
+    { featureId: customDomains.featureId, included: 50 },
     { featureId: storage.featureId, included: 102_400 },
     { featureId: seats.featureId, included: 10 },
   ],

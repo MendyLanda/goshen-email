@@ -1,4 +1,4 @@
-import { assetResponse, assets, dashboardOrigin, readJson, responseHeaders, workspaceCookie } from './handler.mjs'
+import { assetResponse, assets, dashboardOrigin, readJson, renderAsset, responseHeaders, workspaceCookie } from './handler.mjs'
 import { customerOperations, DashboardError } from './service.mjs'
 
 // Access sessions are Cloudflare's; the marker is reissued on every session read and lasts a day at most.
@@ -19,7 +19,7 @@ export function accessDashboardHandler({ client, publicUrl, asset }) {
       const path = url.pathname
       if (request.method === 'GET' && assets.has(path)) {
         const entry = assets.get(path)
-        return assetResponse(await asset(entry[0], request), entry)
+        return assetResponse(await renderAsset(path, await asset(entry[0], request), origin), entry)
       }
       if (request.method === 'GET' && path === '/healthz') return json({ status: 'ok', service: 'bezalel-email-dashboard' })
       const token = request.headers.get('cf-access-jwt-assertion')

@@ -44,11 +44,11 @@
 <p>Email is the channel the rest of the world already uses. An agent with an inbox can talk to any business, tool, or person without them installing anything.</p>
 <h2 id="what-an-agent-gets">What an agent gets</h2>
 <ul>
-<li><strong>Its own inbox.</strong> One API call creates an inbox with its own address on <code>agents.goshenemail.com</code> or on a domain you own. Each inbox keeps its own messages, threads, and labels.</li>
+<li><strong>Its own inbox.</strong> One API call creates an inbox with its own address on <code>agents.goshenemail.com</code>, or on a domain you own where the deployment supports custom domains. Each inbox keeps its own messages, threads, and labels.</li>
 <li><strong>Two-way mail.</strong> The agent sends, receives, and replies. Replies to mail it sent land in the same inbox, threaded to the original conversation.</li>
 <li><strong>Files.</strong> Attachments go out with a message and come back with a download URL.</li>
 <li><strong>A key scoped to the job.</strong> A mailbox key reaches one inbox. An account key reaches every inbox in the account, limited to the scopes you choose. Neither can release quarantine or create other keys.</li>
-<li><strong>Screening before it reads.</strong> Incoming mail is scanned. Messages that fail authentication, score as spam, or carry malware wait in quarantine instead of reaching the agent.</li>
+<li><strong>Screening before it reads.</strong> When the deployment scans incoming mail, messages that fail authentication, score as spam, or carry malware wait in quarantine instead of reaching the agent.</li>
 <li><strong>Tools, not just endpoints.</strong> The <a href="/docs/mcp">MCP server</a> exposes the inbox to Claude Code, Cursor, Codex, or any MCP client as 17 tools. The REST API and CLI expose the same 17 operations.</li>
 </ul>
 <h2 id="oversight-when-you-want-it">Oversight when you want it</h2>

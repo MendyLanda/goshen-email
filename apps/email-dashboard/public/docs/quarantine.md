@@ -1,6 +1,6 @@
 # Quarantine
 
-Incoming mail is scanned before an agent sees it. Messages that fail the checks wait for a person.
+When scanning is on, the scanner checks incoming mail before an agent sees it, and messages that fail wait for a person.
 
 ## Why quarantine exists
 
@@ -30,7 +30,7 @@ A message is quarantined when any of these apply:
 | `spam` | The spam score reached the threshold (6), or the spam filter's own verdict was reject, quarantine, discard, or rewrite. |
 | `authentication_failed` | DMARC failed, or SPF failed with neither DKIM nor DMARC passing. |
 
-A message with no `protection` block arrived on a deployment without scanning enabled and was not checked.
+A message with no `protection` block arrived on a deployment without scanning enabled and was not checked. The hosted service doesn't scan incoming mail yet, so its messages have no `protection` block and nothing is quarantined there.
 
 ## What happens to a quarantined message
 

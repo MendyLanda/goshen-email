@@ -19,8 +19,8 @@ any of this.
 | Top-ups | none | $2/unit | $2/unit |
 | Support | GitHub issues | email | priority email |
 
-A top-up unit is one inbox, one custom domain, 1,000 sends, or 1,000 triage
-analyses per month. Monthly balances reset on the billing date. Inbox and
+A top-up unit is one inbox, 1,000 sends, or 1,000 triage analyses per month.
+Custom domains have no top-up while hosted accounts cannot add domains. Monthly balances reset on the billing date. Inbox and
 domain counts do not reset. The rolling 24-hour send limit per inbox stays in
 place on every plan as an abuse backstop.
 

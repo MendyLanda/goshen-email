@@ -64,7 +64,7 @@ describe("plan limits through Autumn", () => {
         const item = new RegExp(`featureId: ${variable}\\.featureId, included: ([0-9_]+)`).exec(block)
         expect(item ? Number(item[1]!.replaceAll("_", "")) : 0, `${plan.planId} ${feature}`).toBe(included)
         const topUp = new RegExp(`featureId: ${variable}\\.featureId, included: [0-9_]+(, reset: monthly)?, price: topUp\\(`).test(block)
-        expect(topUp, `${plan.planId} ${feature} top-up`).toBe(plan.topUps && ["inboxes", "sends", "triage", "customDomains"].includes(feature))
+        expect(topUp, `${plan.planId} ${feature} top-up`).toBe(plan.topUps && ["inboxes", "sends", "triage"].includes(feature))
       }
     }
     expect(config).toContain(`amount: ${topUpPrice}, billingUnits`)

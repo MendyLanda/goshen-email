@@ -43,6 +43,7 @@ export const assets = new Map([
   ['/images/landing/sea.webp', ['images/landing/sea.webp', 'image/webp']],
   ['/images/landing/dunes.webp', ['images/landing/dunes.webp', 'image/webp']],
   ['/images/landing/road.webp', ['images/landing/road.webp', 'image/webp']],
+  ['/images/og.png', ['images/og.png', 'image/png']],
 ])
 const equal = (a, b) => {
   const left = Buffer.from(a), right = Buffer.from(b)
@@ -111,7 +112,7 @@ export function dashboardHandler({ client, password, publicUrl, asset, state = {
       const path = url.pathname
       if (request.method === 'GET' && assets.has(path)) {
         const entry = assets.get(path)
-        return assetResponse(await asset(entry[0], request), entry)
+        return assetResponse(await renderAsset(path, await asset(entry[0], request), origin), entry)
       }
       if (request.method === 'GET' && path === '/healthz') return json({ status: 'ok', service: 'bezalel-email-dashboard' })
       if (request.method === 'GET' && path === '/api/session') {
@@ -194,6 +195,14 @@ export function responseHeaders() {
       'referrer-policy': 'no-referrer',
       'content-security-policy': "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",
     })
+}
+
+// The landing page's social tags name the hosted site. A self-hosted deployment gets its own origin there
+// instead, so shared links point at the page that was shared and at the deployment's own preview image.
+const hostedOrigin = 'https://goshenemail.com'
+export async function renderAsset(path, body, origin) {
+  if (path !== '/' || origin.origin === hostedOrigin) return body
+  return (await new Response(body).text()).replaceAll(`content="${hostedOrigin}/`, `content="${origin.origin}/`)
 }
 
 export function assetResponse(body, [file, contentType]) {

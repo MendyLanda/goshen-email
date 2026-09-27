@@ -17,7 +17,7 @@ export const planView = z.object({
 })
 export type PlanView = z.infer<typeof planView>
 
-/** Every top-up unit costs this much per month: one inbox, one domain, 1,000 sends, or 1,000 triage analyses. */
+/** Every top-up unit costs this much per month: one inbox, 1,000 sends, or 1,000 triage analyses. */
 export const topUpPrice = 2
 
 export const pricingPlans: readonly PlanView[] = [
