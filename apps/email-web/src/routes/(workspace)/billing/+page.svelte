@@ -142,7 +142,7 @@
 				<section class="space-y-3">
 					<SectionHeader
 						title="Plans"
-						description="Upgrades take effect right away. Paid plans add $2 top-ups for one inbox, one domain, 1,000 sends, or 1,000 triage analyses a month."
+						description="Upgrades take effect right away. Paid plans add $2 top-ups for one inbox, 1,000 sends, or 1,000 triage analyses a month."
 					/>
 					<div class="grid gap-3 md:grid-cols-3">
 						{#each usage.plans as plan (plan.planId)}
