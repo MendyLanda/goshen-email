@@ -67,7 +67,10 @@ gateway, mail domains, R2 bucket, and delivery queues still need deployment setu
    It is off by default, and this deployment leaves it off. The Worker then
    migrates as the Hyperdrive user without `SET LOCAL ROLE`, so that user must be
    able to create the `mail` schema and its objects, for example as the database
-   owner. The limited role in step 4 can't.
+   owner. The limited role in step 4 can't. On upgrades it also alters existing
+   tables, so it must own every `mail` object or belong to the role that does.
+   Objects that `pnpm migrate` already created belong to `postgres`; leave the
+   setting off for such a database unless you move their ownership first.
 4. Create an application role for Hyperdrive with `USAGE` on the `mail` schema,
    read/write access to its tables, and `EXECUTE` on its functions. Apply grants
    for both existing and future objects created by the migration role.

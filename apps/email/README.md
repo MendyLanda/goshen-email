@@ -81,9 +81,15 @@ transaction under an advisory lock, so isolates that start together migrate
 once. A failed migration rolls back and fails the event, and the next event
 tries again. `/healthz` skips the check. An upgrade's migrations run on the
 first event after the deploy. The Hyperdrive user needs the right to create the
-`mail` schema and its objects, for example as the database owner. The Worker
-never switches to the `postgres` role the way `pnpm migrate` does. The hosted
-service leaves this off and applies reviewed SQL by hand.
+`mail` schema and its objects, for example as the database owner, and must own
+any `mail` objects that already exist, directly or as a member of their owning
+role. The Worker never switches to the `postgres` role the way `pnpm migrate`
+does, so objects that `pnpm migrate` created belong to `postgres`, and an
+upgrade's `alter table` fails on them. The event returns an error until the
+ownership is fixed or someone runs `pnpm migrate`. For an existing database,
+make the Hyperdrive user the owner of the `mail` schema and every object in it
+first, or keep the setting off and run `pnpm migrate`. The hosted service leaves
+this off and applies reviewed SQL by hand.
 
 The Worker checks sending and receiving before creating an inbox. The default
 mode requires a catch-all targeting this Worker. For a subdomain sharing a zone
